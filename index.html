@@ -16,21 +16,21 @@
                 'value': 5.00
             });
         }
-        
+
         function exitIntentPopup(event) {
             if (event.clientY < 50) {
                 document.getElementById("exit-popup").style.display = "block";
                 document.removeEventListener("mousemove", exitIntentPopup);
             }
         }
-        
+
         document.addEventListener("mousemove", exitIntentPopup);
     </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Unlock Exclusive Adult Content</title>
+    <title>🔥 Special Offer - Exclusive Content 🔥</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -41,7 +41,7 @@
             text-align: center;
         }
         .header {
-            background-color: #FF4500;
+            background-color: #000000; /* Changed to black */
             padding: 40px;
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -90,26 +90,41 @@
             padding: 20px;
             color: white;
         }
+        .countdown {
+            font-size: 18px;
+            color: #FF4500;
+            font-weight: bold;
+        }
+        .testimonials {
+            font-size: 14px;
+            color: #bbb;
+            font-style: italic;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Unlock Exclusive Access to Premium Adult Content</h1>
-        <p>You're just a click away from the content you've been searching for! Limited-time offer.</p>
+        <h1>🔥 Special Offer for a Limited Time 🔥</h1>
+        <p>Access exclusive content before the offer ends:</p>
+        <p class="countdown" id="countdown-timer">05:00</p>
     </div>
 
     <div class="content-lock">
-        <p>Unlock the full experience NOW!</p>
-        <p>For just <span class="offer">$5</span>, you get unlimited access to all premium content.</p>
+        <p>🎁 <b>Normally: <s>$19.99</s> → TODAY only <span class="offer">$5</span>!</b></p>
+        <p>📌 <b>Premium content unlocked immediately.</b></p>
+        <p>🔒 <b>100% secure and discreet payment.</b></p>
+        <p class="testimonials" id="testimonial">"Carlos (Mexico) just subscribed 3 minutes ago."</p>
+
         <div class="paypal-section">
-            <p><strong>🔒 Secure & Private Payment via PayPal</strong></p>
+            <p><strong>🔒 Secure Payment with PayPal</strong></p>
             <div id="paypal-button-container"></div>
         </div>
     </div>
 
     <div class="exit-popup" id="exit-popup">
-        <h2>Wait! Don't leave yet!</h2>
-        <p>Subscribe now and get <strong>instant</strong> access to premium content!</p>
+        <h2>❗ Wait, don't leave ❗</h2>
+        <p>🔹 If you subscribe now, you will receive a **FREE BONUS**.</p>
         <div id="paypal-button-container"></div>
     </div>
     
@@ -131,15 +146,42 @@
                 trackPayPalClick();
             },
             onApprove: function(data, actions) {
-                alert('Subscription Approved! Subscription ID: ' + data.subscriptionID);
+                alert('✅ Subscription approved: ' + data.subscriptionID);
             }
         }).render('#paypal-button-container');
+
+        // ⏳ Urgency Timer
+        let timeLeft = 300;
+        function updateCountdown() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("countdown-timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                document.getElementById("countdown-timer").innerText = "Offer ended!";
+            }
+        }
+        updateCountdown();
+
+        // 🔥 Live Social Proof (Random Messages)
+        const testimonials = [
+            '"Carlos (Mexico) just subscribed 3 minutes ago."',
+            '"Andrea (Spain) unlocked the exclusive content 2 minutes ago."',
+            '"Luis (Argentina) made the payment with PayPal 1 minute ago."',
+            '"Sofía (Colombia) just joined our community."'
+        ];
+        function updateTestimonial() {
+            document.getElementById("testimonial").innerText = testimonials[Math.floor(Math.random() * testimonials.length)];
+            setTimeout(updateTestimonial, 5000);
+        }
+        updateTestimonial();
     </script>
 
     <div class="footer">
-        <p>© 2025 Exclusive Adult Content. All Rights Reserved.</p>
+        <p>© 2025 Exclusive Content. All Rights Reserved.</p>
     </div>
 </body>
 </html>
-
 
