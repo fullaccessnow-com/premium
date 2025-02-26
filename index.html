@@ -41,7 +41,7 @@
             text-align: center;
         }
         .header {
-            background-color: #000000; /* Changed to black */
+            background-color: #000000;
             padding: 40px;
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -95,12 +95,6 @@
             color: #FF4500;
             font-weight: bold;
         }
-        .testimonials {
-            font-size: 14px;
-            color: #bbb;
-            font-style: italic;
-            margin-top: 15px;
-        }
     </style>
 </head>
 <body>
@@ -114,7 +108,6 @@
         <p>🎁 <b>Normally: <s>$19.99</s> → TODAY only <span class="offer">$5</span>!</b></p>
         <p>📌 <b>Premium content unlocked immediately.</b></p>
         <p>🔒 <b>100% secure and discreet payment.</b></p>
-        <p class="testimonials" id="testimonial">"Carlos (Mexico) just subscribed 3 minutes ago."</p>
 
         <div class="paypal-section">
             <p><strong>🔒 Secure Payment with PayPal</strong></p>
@@ -164,19 +157,6 @@
             }
         }
         updateCountdown();
-
-        // 🔥 Live Social Proof (Random Messages)
-        const testimonials = [
-            '"Carlos (Mexico) just subscribed 3 minutes ago."',
-            '"Andrea (Spain) unlocked the exclusive content 2 minutes ago."',
-            '"Luis (Argentina) made the payment with PayPal 1 minute ago."',
-            '"Sofía (Colombia) just joined our community."'
-        ];
-        function updateTestimonial() {
-            document.getElementById("testimonial").innerText = testimonials[Math.floor(Math.random() * testimonials.length)];
-            setTimeout(updateTestimonial, 5000);
-        }
-        updateTestimonial();
     </script>
 
     <div class="footer">
@@ -184,4 +164,6 @@
     </div>
 </body>
 </html>
+
+
 
