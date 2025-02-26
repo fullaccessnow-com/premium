@@ -1,144 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access exclusive content and irresistible offers in the adult world. Click now!">
+    <meta name="keywords" content="adult content, premium offers, payment, registration, subscription">
+    <title>Exclusive Content - Register Now!</title>
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRMYG5ZVMH"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-SRMYG5ZVMH');
-        
-        function trackPayPalClick() {
-            console.log("PayPal Button Clicked!");
-            gtag('event', 'paypal_click', {
-                'event_category': 'Subscription',
-                'event_label': 'PayPal Button Click',
-                'value': 5.00
+
+        function trackLinkClick() {
+            console.log("Adsterra Link Clicked!");
+            gtag('event', 'link_click', {
+                'event_category': 'Click',
+                'event_label': 'Adsterra Link',
+                'value': 1
             });
         }
-        
-        function exitIntentPopup(event) {
-            if (event.clientY < 50) {
-                document.getElementById("exit-popup").style.display = "block";
-                document.removeEventListener("mousemove", exitIntentPopup);
-            }
-        }
-        
-        document.addEventListener("mousemove", exitIntentPopup);
+
+        // Track time spent on page
+        let startTime = Date.now();
+        window.addEventListener("beforeunload", function() {
+            let timeSpent = Math.round((Date.now() - startTime) / 1000); // Time in seconds
+            gtag('event', 'time_spent', {
+                'event_category': 'Engagement',
+                'event_label': 'Time on Page',
+                'value': timeSpent
+            });
+        });
+
+        gtag('event', 'page_view', {
+            'event_category': 'Landing Page',
+            'event_label': 'Adult Traffic'
+        });
     </script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Unlock Exclusive Adult Content</title>
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1c1c1c;
+            font-family: Arial, sans-serif;
+            background-color: #000;
             color: #fff;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
             text-align: center;
+            padding: 20px;
         }
-        .header {
-            background-color: #FF4500;
-            padding: 40px;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        h1 {
+            font-size: 2.5em;
+            color: #f39c12;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
-        .content-lock {
-            background-color: #333;
-            padding: 40px;
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .cta-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 20px 50px;
+            font-size: 1.5em;
             border-radius: 10px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 650px;
-        }
-        .offer {
-            font-size: 24px;
-            color: #FF4500;
-            font-weight: 700;
-        }
-        .paypal-section {
+            display: inline-block;
+            transition: background-color 0.3s ease;
             margin-top: 20px;
-            background-color: #444;
-            padding: 20px;
-            border-radius: 8px;
+            animation: bounce 2s infinite;
         }
-        .paypal-section:hover {
-            background-color: #555;
+        .cta-button:hover {
+            background-color: #c0392b;
         }
-        #paypal-button-container {
-            margin-top: 10px;
+        .cta-button:active {
+            transform: scale(0.98);
         }
-        .exit-popup {
-            display: none;
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #222;
-            padding: 20px;
+        .image-container {
+            margin-top: 30px;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 700px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
         }
-        .exit-popup h2 {
-            color: #FF4500;
+        .image-container img:hover {
+            transform: scale(1.05);
         }
-        .footer {
-            background-color: #333;
-            padding: 20px;
-            color: white;
+        .paypal-btn {
+            background-color: #0070ba;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border-radius: 8px;
+            margin-top: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: none;
+        }
+        .paypal-btn:hover {
+            background-color: #005a8b;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.1em;
+            }
+            .cta-button {
+                font-size: 1.2em;
+                padding: 15px 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Unlock Exclusive Access to Premium Adult Content</h1>
-        <p>You're just a click away from the content you've been searching for! Limited-time offer.</p>
-    </div>
 
-    <div class="content-lock">
-        <p>Unlock the full experience NOW!</p>
-        <p>For just <span class="offer">$5</span>, you get unlimited access to all premium content.</p>
-        <div class="paypal-section">
-            <p><strong>🔒 Secure & Private Payment via PayPal</strong></p>
-            <div id="paypal-button-container"></div>
+    <div class="container">
+        <h1>Welcome to Our Exclusive Content!</h1>
+        <p>Enjoy incredible offers, premium content, and exclusive access. Register now to take advantage of all our promotions. Click now and get started!</p>
+
+        <!-- Adsterra link with click tracking -->
+        <a href="https://www.effectiveratecpm.com/mxdjviqa0?key=3ed3c56c2cb6facb6e587836bcee16c4" target="_blank" class="cta-button" onclick="trackLinkClick()">Access Now!</a>
+
+        <!-- Image of beautiful woman -->
+        <div class="image-container">
+            <img src="https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2luc3RhZ3JhbS5maGFuNS02LmZuYS5mYmNkbi5uZXQvdi90NTEuMjkzNTAtMTUvMzI4Nzk4NzQ3XzI5ODgxMzAzOTQ4MTUzMzdfMTcyODY4MjU4MjEwMTk4NzI1N19uLmpwZz9zdHA9ZHN0LWpwZ19lMzVfcDY0MHg2NDBfc2gwLjA4X3R0NiZlZmc9ZXlKMlpXNWpiMlJsWDNSaFp5STZJbWx0WVdkbFgzVnliR2RsYmk0eE5EUXdlREUzTlRFdWMyUnlMbVl5T1RNMU1DNWtaV1poZFd4MFgybHRZV2RsSW4wJl9uY19odD1pbnN0YWdyYW0uZmhhbjUtNi5mbmEuZmJjZG4ubmV0Jl9uY19jYXQ9MTA1Jl9uY19vYz1RNmNaMkFHU0pOSFpXRnRZNVRaaVJuXzZFMFp4STJNWjF3TlZ6YlpRSGxWZ0ktX29ZSE5HdVJzODU0RjJBTWkxeUVsOG9aMCZfbmNfb2hjPVZGSlBUb3NHNE1rUTdrTnZnSEtsMFg5Jl9uY19naWQ9OGQ5NTkxNzVkMTcwNDA1NWE3YzNmOGRhNDRmZTUzOTMmZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FZQnV4VHJzai1EYVJTZmN5cTU3LUNtbGhBc252ZWdQU1dxbVNfSHVKU1lDd3cmb2U9NjdDNEUwQkQmX25jX3NpZD0xMGQxM2IiLCJmaWxlbmFtZSI6IlRodW1ibmFpbF8zMjg3OTg3NDdfMjk4ODEzMDM5NDgxNTMzN18xNzI4NjgyNTgyMTAxOTg3MjU3X24uanBnIiwibmJmIjoxNzQwNTgxNDE4LCJleHAiOjE3NDA1ODUwMTgsImlhdCI6MTc0MDU4MTQxOH0.eaG7s7osOPsJVcqrega2QkkVKfshLfEdPvVcO370UyU">
         </div>
+
+        <!-- Hidden PayPal button, no tracking in Analytics -->
+        <button class="paypal-btn" onclick="trackPayPalClick()">Pay with PayPal</button>
     </div>
 
-    <div class="exit-popup" id="exit-popup">
-        <h2>Wait! Don't leave yet!</h2>
-        <p>Subscribe now and get <strong>instant</strong> access to premium content!</p>
-        <div id="paypal-button-container"></div>
-    </div>
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=AQ7Ul0W71tqYmFeVSUq02n_89_gb1cyr0nrOr7qoMRLBORpJIbwU85C0NU50xy9Q1h-jmIcGnqSdnQEh&vault=true&intent=subscription"></script>
-    <script>
-        paypal.Buttons({
-            style: {
-                shape: 'rect',
-                color: 'gold',
-                layout: 'vertical',
-                label: 'subscribe'
-            },
-            createSubscription: function(data, actions) {
-                return actions.subscription.create({
-                    plan_id: 'P-38Y52750W61502603M67K37A'
-                });
-            },
-            onClick: function() {
-                trackPayPalClick();
-            },
-            onApprove: function(data, actions) {
-                alert('Subscription Approved! Subscription ID: ' + data.subscriptionID);
-            }
-        }).render('#paypal-button-container');
-    </script>
-
-    <div class="footer">
-        <p>© 2025 Exclusive Adult Content. All Rights Reserved.</p>
-    </div>
 </body>
 </html>
-
