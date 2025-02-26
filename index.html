@@ -15,6 +15,10 @@
         gtag('js', new Date());
         gtag('config', 'G-SRMYG5ZVMH');
 
+        let interactionRequired = false;
+        let timerStarted = false;
+        let startTime = 0;
+
         function trackLinkClick() {
             console.log("Adsterra Link Clicked!");
             gtag('event', 'link_click', {
@@ -22,23 +26,40 @@
                 'event_label': 'Adsterra Link',
                 'value': 1
             });
+            if (!timerStarted) {
+                startTime = Date.now();
+                timerStarted = true;
+                startInteractionTimer();
+            }
         }
 
-        // Track time spent on page
-        let startTime = Date.now();
+        function startInteractionTimer() {
+            setTimeout(function() {
+                interactionRequired = true;
+                document.getElementById("continue-button").style.display = "block";  // Show continue button after 2 minutes
+                document.getElementById("countdown").style.display = "none";  // Hide countdown text
+            }, 120000); // 2 minutes in milliseconds
+        }
+
+        // To track the time spent on the page
         window.addEventListener("beforeunload", function() {
-            let timeSpent = Math.round((Date.now() - startTime) / 1000); // Time in seconds
-            gtag('event', 'time_spent', {
-                'event_category': 'Engagement',
-                'event_label': 'Time on Page',
-                'value': timeSpent
-            });
+            if (interactionRequired) {
+                let timeSpent = Math.round((Date.now() - startTime) / 1000); // Time in seconds
+                gtag('event', 'time_spent', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Time on Page',
+                    'value': timeSpent
+                });
+            }
         });
 
-        gtag('event', 'page_view', {
-            'event_category': 'Landing Page',
-            'event_label': 'Adult Traffic'
-        });
+        function onContinueClick() {
+            if (interactionRequired) {
+                window.location.href = "https://www.yournextpage.com"; // Change this to your next URL
+            } else {
+                alert("You must interact with the page for 2 minutes before proceeding.");
+            }
+        }
     </script>
 
     <style>
@@ -94,19 +115,28 @@
         .image-container img:hover {
             transform: scale(1.05);
         }
-        .paypal-btn {
-            background-color: #0070ba;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 1.3em;
-            border-radius: 8px;
-            margin-top: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: none;
+
+        .countdown {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #f39c12;
+            font-weight: bold;
         }
-        .paypal-btn:hover {
-            background-color: #005a8b;
+
+        .continue-button {
+            display: none;
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            border-radius: 10px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-button:hover {
+            background-color: #27ae60;
         }
 
         @keyframes fadeIn {
@@ -141,6 +171,13 @@
                 font-size: 1.2em;
                 padding: 15px 30px;
             }
+            .countdown {
+                font-size: 1.2em;
+            }
+            .continue-button {
+                font-size: 1.3em;
+                padding: 15px 30px;
+            }
         }
     </style>
 </head>
@@ -153,9 +190,16 @@
         <!-- Adsterra link with click tracking -->
         <a href="https://www.effectiveratecpm.com/mxdjviqa0?key=3ed3c56c2cb6facb6e587836bcee16c4" target="_blank" class="cta-button" onclick="trackLinkClick()">Access Now!</a>
 
-        <!-- Hidden PayPal button, no tracking in Analytics -->
-        <button class="paypal-btn" onclick="trackPayPalClick()">Pay with PayPal</button>
+
+        <!-- Countdown text -->
+        <div id="countdown" class="countdown">Please interact with the page for 2 minutes to continue...</div>
+
+        <!-- Button to continue, hidden initially -->
+        <button id="continue-button" class="continue-button" onclick="onContinueClick()">Continue</button>
     </div>
 
 </body>
 </html>
+
+
+
