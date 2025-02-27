@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Frauen in deiner Nähe wollen Spaß! 🔥</title>
+    <title>🔥 Hot Women Near You Want to Have Fun! 🔥</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMK9V27T86"></script>
     <script>
@@ -106,46 +106,46 @@
 </head>
 <body>
     <div class="container">
-        <h2>🔥 Heiße Frauen in deiner Nähe! 🔥</h2>
+        <h2>🔥 Hot Women Near You! 🔥</h2>
         <div class="image-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj-5S3Ij0hqdv3K5lxXapnpyhS9XVgTKxppA&s" alt="Attraktive Frau">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj-5S3Ij0hqdv3K5lxXapnpyhS9XVgTKxppA&s" alt="Attractive Woman">
         </div>
-        <p class="alert">🚨 3 Frauen warten bereits auf dich! 🚨</p>
-        <p>Beantworte 3 Fragen, um dein erstes Match zu finden!</p>
+        <p class="alert">🚨 3 women are already waiting for you! 🚨</p>
+        <p>Answer 3 questions to find your first match!</p>
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
         <div id="step1" class="question" style="display: block;">
-            <p>1. Bist du älter als 18?</p>
-            <button class="btn" onclick="nextStep(2, 33)">Ja</button>
+            <p>1. Are you over 18?</p>
+            <button class="btn" onclick="nextStep(2, 33)">Yes</button>
         </div>
         <div id="step2" class="question" style="display: none;">
-            <p>2. Möchtest du heute Abend Spaß haben?</p>
-            <button class="btn" onclick="nextStep(3, 66)">Ja</button>
+            <p>2. Do you want to have fun tonight?</p>
+            <button class="btn" onclick="nextStep(3, 66)">Yes</button>
         </div>
         <div id="step3" class="question" style="display: none;">
-            <p>3. Suchst du Frauen in deiner Umgebung?</p>
-            <button class="btn btn-final" onclick="redirect()">🔥 Ja, jetzt starten! 🔥</button>
+            <p>3. Are you looking for women in your area?</p>
+            <button class="btn btn-final" onclick="redirect()">🔥 Yes, let's start now! 🔥</button>
         </div>
-        <p class="timer">⚠️ Achtung: Angebot läuft in <span id="countdown">30</span> Sekunden ab!</p>
+        <p class="timer">⚠️ Warning: Offer expires in <span id="countdown">30</span> seconds!</p>
     </div>
     <script>
         function nextStep(step, progress) {
-            // Ocultar todas las preguntas
+            // Hide all questions
             document.querySelectorAll('.question').forEach(el => el.style.display = 'none');
-            // Mostrar la siguiente pregunta
+            // Show the next question
             document.getElementById('step' + step).style.display = 'block';
-            // Actualizar la barra de progreso
+            // Update the progress bar
             document.getElementById('progress').style.width = progress + '%';
-            // Registrar evento en Google Analytics
+            // Log the event in Google Analytics
             gtag('event', 'click', {
                 'event_category': 'Engagement',
-                'event_label': 'Frage ' + (step - 1)
+                'event_label': 'Question ' + (step - 1)
             });
         }
         
         function redirect() {
-            // Registramos la conversión antes de la redirección
+            // Log the conversion before redirecting
             gtag('event', 'conversion', {'send_to': 'G-GMK9V27T86'});
-            // Redirigir al usuario después de hacer clic
+            // Redirect the user after clicking
             window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
         }
         
