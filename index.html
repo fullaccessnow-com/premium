@@ -3,15 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://eradictrkr.com/pauldev">
-    <title>Redirecting...</title>
-    <script>
-        // Redirigir con JavaScript como respaldo
-        window.location.href = "https://eradictrkr.com/pauldev";
-    </script>
+    <title>Exclusive Access</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+        h1 {
+            color: red;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 20px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .locked {
+            font-size: 18px;
+            color: yellow;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p>If you are not redirected, <a href="https://eradictrkr.com/pauldev">click here</a>.</p>
+    <div class="container">
+        <h1>Restricted Access</h1>
+        <p>To continue, complete an age verification offer.</p>
+        <p class="locked">⚠️ Access will remain locked until you complete the verification.</p>
+        <a class="cta-button" id="offer-link" href="https://eradictrkr.com/pauldev" target="_blank">Unlock Access</a>
+    </div>
+    
+    <script>
+        function checkCompletion() {
+            setInterval(() => {
+                fetch("https://your-verification-endpoint.com/check") // Here the validation system would go
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.completed) {
+                            window.location.href = "https://your-final-url.com"; // Redirect after completion
+                        }
+                    });
+            }, 5000);
+        }
+        checkCompletion();
+    </script>
 </body>
 </html>
-
