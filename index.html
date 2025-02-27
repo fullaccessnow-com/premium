@@ -3,65 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Access</title>
+    <title>🔥 Exclusive Dating Access 🔥</title>
     <style>
-        body {
-            background-color: black;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-        }
-        h1 {
-            color: red;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 20px;
-            background-color: red;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-        .locked {
-            font-size: 18px;
-            color: yellow;
-            margin-top: 20px;
-        }
+        body { text-align: center; font-family: Arial, sans-serif; background: black; color: white; }
+        .container { max-width: 400px; margin: 50px auto; padding: 20px; background: rgba(0, 0, 0, 0.8); border-radius: 10px; }
+        .cta-button { display: inline-block; padding: 15px 20px; background: red; color: white; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 5px; margin-top: 20px; cursor: pointer; }
+        input { padding: 10px; width: 90%; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Restricted Access</h1>
-        <p>To continue, complete an age verification offer.</p>
-        <p class="locked">⚠️ Access will remain locked until you complete the verification.</p>
-        <a class="cta-button" id="offer-link" href="https://eradictrkr.com/pauldev" target="_blank">Unlock Access</a>
+        <h1>🔥 Meet Hot Singles Near You! 🔥</h1>
+        <p>Enter your email to get exclusive access:</p>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button class="cta-button" onclick="submitEmail()">Get Access</button>
     </div>
-    
+
     <script>
-        function checkCompletion() {
-            setInterval(() => {
-                fetch("https://your-verification-endpoint.com/check") // Here the validation system would go
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.completed) {
-                            window.location.href = "https://your-final-url.com"; // Redirect after completion
-                        }
-                    });
-            }, 5000);
+        async function submitEmail() {
+            const email = document.getElementById("email").value;
+            if (!email) return alert("Please enter a valid email!");
+
+            try {
+                const response = await fetch("https://ivewhjsyfwmxxyfmoakw.supabase.co/rest/v1/emails", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2ZXdoanN5ZndteHh5Zm1vYWt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4MzczNjksImV4cCI6MjA1NDQxMzM2OX0.sXwkKkGlNWvH40SuDkyj2WegeghAds6-Kp0XHJWv_0Y", 
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2ZXdoanN5ZndteHh5Zm1vYWt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4MzczNjksImV4cCI6MjA1NDQxMzM2OX0.sXwkKkGlNWvH40SuDkyj2WegeghAds6-Kp0XHJWv_0Y"
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const responseText = await response.text();  // Procesamos la respuesta como texto para depuración
+
+                if (!response.ok) {
+                    console.error("Error response:", responseText);  // Mostramos el error en la consola
+
+                    if (responseText.includes("duplicate key value")) {
+                        // Si el correo ya existe, solo redirigimos sin mostrar mensaje de error
+                        window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+                    } else {
+                        // Si hay otro error, redirigimos de todos modos sin mostrar mensaje
+                        window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+                    }
+                    return;
+                }
+
+                // Si la respuesta está vacía, evitamos parsearla como JSON y solo procedemos con la redirección
+                if (!responseText.trim()) {
+                    window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+                    return;
+                }
+
+                // Si la respuesta es exitosa, redirigimos al usuario a la oferta
+                window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+
+            } catch (error) {
+                console.error("Error submitting email:", error);  // Mostramos el error de la petición en la consola
+                window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN"; // Redirigimos de todos modos
+            }
         }
-        checkCompletion();
     </script>
 </body>
 </html>
