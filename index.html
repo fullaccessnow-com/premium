@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 Frauen in deiner Nähe wollen Spaß! 🔥</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMK9V27T86"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GMK9V27T86');
+    </script>
     <style>
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0.5; }
             100% { opacity: 1; }
-        }
-        @keyframes vibrate {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-2px); }
-            50% { transform: translateX(2px); }
-            75% { transform: translateX(-2px); }
-            100% { transform: translateX(2px); }
         }
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -39,12 +40,6 @@
         }
         h2 {
             animation: blink 1.5s infinite;
-        }
-        .question {
-            display: none;
-            font-size: 18px;
-            font-weight: bold;
-            animation: fadeIn 0.5s ease-in-out;
         }
         .btn {
             background-color: red;
@@ -137,8 +132,13 @@
             document.querySelectorAll('.question').forEach(el => el.style.display = 'none');
             document.getElementById('step' + step).style.display = 'block';
             document.getElementById('progress').style.width = progress + '%';
+            gtag('event', 'click', {
+                'event_category': 'Engagement',
+                'event_label': 'Frage ' + (step - 1)
+            });
         }
         function redirect() {
+            gtag('event', 'conversion', {'send_to': 'G-GMK9V27T86'});
             window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
         }
         function startCountdown() {
@@ -154,7 +154,11 @@
                 }
             }, 1000);
         }
-        startCountdown();
+        window.onload = function() {
+            gtag('event', 'page_view', {'event_category': 'Time on Page'});
+            startCountdown();
+        };
     </script>
 </body>
 </html>
+
