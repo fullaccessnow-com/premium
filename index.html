@@ -137,10 +137,15 @@
                 'event_label': 'Frage ' + (step - 1)
             });
         }
+        
         function redirect() {
+            // Registramos la conversión antes de la redirección
             gtag('event', 'conversion', {'send_to': 'G-GMK9V27T86'});
-            window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+            setTimeout(function() {
+                window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+            }, 500);  // Retraso de 500 ms para asegurar que el evento de conversión se registre
         }
+        
         function startCountdown() {
             let timeLeft = 30;
             const countdownElement = document.getElementById('countdown');
@@ -154,6 +159,7 @@
                 }
             }, 1000);
         }
+        
         window.onload = function() {
             gtag('event', 'page_view', {'event_category': 'Time on Page'});
             startCountdown();
@@ -161,4 +167,3 @@
     </script>
 </body>
 </html>
-
