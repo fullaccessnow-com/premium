@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Exclusive Dating Access 🔥</title>
+    <title>🔥 خصوصی ڈیٹنگ تک رسائی 🔥</title>
     <style>
         body { text-align: center; font-family: Arial, sans-serif; background: black; color: white; }
         .container { max-width: 400px; margin: 50px auto; padding: 20px; background: rgba(0, 0, 0, 0.8); border-radius: 10px; }
@@ -13,24 +13,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>🔥 Exclusive Access for 18+ Only 🔥</h1>
-        <p>Enter your email to continue browsing:</p>
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <button class="cta-button" onclick="submitEmail()">Get Access</button>
+        <h1>🔥 صرف 18+ کے لیے خصوصی رسائی 🔥</h1>
+        <p>براہ کرم اپنا ای میل درج کریں تاکہ آپ براؤزنگ جاری رکھ سکیں:</p>
+        <input type="email" id="email" placeholder="اپنا ای میل درج کریں" required>
+        <button class="cta-button" onclick="submitEmail()">رسائی حاصل کریں</button>
     </div>
 
     <script>
         async function submitEmail() {
             const email = document.getElementById("email").value;
 
-            // Verificar si el email está vacío
+            // ای میل کا خالی ہونا چیک کریں
             if (!email) {
-                alert("You must enter a valid email to continue!");
-                return;  // No continuar si no hay correo
+                alert("جاری رکھنے کے لیے آپ کو ایک درست ای میل درج کرنا ضروری ہے!");
+                return;  // اگر ای میل نہیں ہے تو عمل نہ کریں
+            }
+
+            // ای میل کے درست فارمیٹ کی تصدیق کریں
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(email)) {
+                alert("براہ کرم ایک درست ای میل ایڈریس درج کریں!");
+                return;  // اگر ای میل کا فارمیٹ درست نہ ہو تو عمل نہ کریں
             }
 
             try {
-                // Enviar el email al servidor
+                // ای میل کو سرور پر بھیجیں
                 const response = await fetch("https://ivewhjsyfwmxxyfmoakw.supabase.co/rest/v1/emails", {
                     method: "POST",
                     headers: {
@@ -41,33 +48,33 @@
                     body: JSON.stringify({ email })
                 });
 
-                const responseText = await response.text();  // Procesamos la respuesta como texto para depuración
+                const responseText = await response.text();  // جوابی پیغام کو ٹیکسٹ کی صورت میں پڑھیں
 
                 if (!response.ok) {
-                    console.error("Error response:", responseText);  // Mostramos el error en la consola
+                    console.error("جواب میں غلطی:", responseText);  // غلطی کو کنسول میں دکھائیں
 
                     if (responseText.includes("duplicate key value")) {
-                        // Si el correo ya existe, solo redirigimos sin mostrar mensaje de error
+                        // اگر ای میل پہلے سے موجود ہو تو ہم بغیر کسی غلطی کے صرف ری ڈائریکٹ کر دیتے ہیں
                         window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
                     } else {
-                        // Si hay otro error, redirigimos de todos modos sin mostrar mensaje
+                        // اگر کوئی اور غلطی ہو تو ہم بغیر کسی غلطی کے ری ڈائریکٹ کر دیتے ہیں
                         window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
                     }
                     return;
                 }
 
-                // Si la respuesta está vacía, evitamos parsearla como JSON y solo procedemos con la redirección
+                // اگر جواب خالی ہو، تو ہم اسے JSON کے طور پر نہ پارس کر کے صرف ری ڈائریکٹ کر دیں گے
                 if (!responseText.trim()) {
                     window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
                     return;
                 }
 
-                // Si la respuesta es exitosa, redirigimos al usuario a la oferta
+                // اگر جواب کامیاب ہو تو صارف کو پیشکش پر ری ڈائریکٹ کریں
                 window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN";
 
             } catch (error) {
-                console.error("Error submitting email:", error);  // Mostramos el error de la petición en la consola
-                window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN"; // Redirigimos de todos modos
+                console.error("ای میل بھیجنے میں خرابی:", error);  // درخواست کی خرابی کو کنسول میں دکھائیں
+                window.location.href = "https://t.slext2.com/341879/7272?bo=2753,2754,2755,2756&popUnder=true&aff_sub5=SF_006OG000004lmDN"; // ہم ہر صورت ری ڈائریکٹ کریں گے
             }
         }
     </script>
