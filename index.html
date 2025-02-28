@@ -29,9 +29,10 @@
             background-color: #111;
             color: white;
             padding: 20px;
+            margin: 0;
         }
         .container {
-            max-width: 400px;
+            max-width: 100%;
             margin: auto;
             background: #222;
             padding: 20px;
@@ -40,6 +41,7 @@
         }
         h2 {
             animation: blink 1.5s infinite;
+            font-size: 24px;
         }
         .btn {
             background-color: red;
@@ -70,6 +72,7 @@
         }
         .image-container img {
             width: 100%;
+            height: auto;
             transition: transform 0.5s ease;
         }
         .image-container img:hover {
@@ -102,14 +105,45 @@
             font-weight: bold;
             margin-top: 10px;
         }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 20px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .btn {
+                font-size: 18px;
+            }
+            .timer {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .btn {
+                font-size: 16px;
+            }
+            .timer {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>🔥 Hot Women Near You! 🔥</h2>
         <div class="image-container">
-    <img src="https://cdni.pornpics.com/460/3/1/37117863/37117863_007_dc8d.jpg">
-</div>
+            <img src="https://cdni.pornpics.com/460/3/1/37117863/37117863_007_dc8d.jpg" alt="Hot women image">
+        </div>
         <p class="alert">🚨 3 women are already waiting for you! 🚨</p>
         <p>Answer 3 questions to find your first match!</p>
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
@@ -127,6 +161,7 @@
         </div>
         <p class="timer">⚠️ Warning: Offer expires in <span id="countdown">30</span> seconds!</p>
     </div>
+
     <script>
         function nextStep(step, progress) {
             // Hide all questions
@@ -135,7 +170,6 @@
             document.getElementById('step' + step).style.display = 'block';
             // Update the progress bar
             document.getElementById('progress').style.width = progress + '%';
-            // No need to track clicks here anymore
         }
         
         function redirect() {
@@ -163,8 +197,6 @@
             startCountdown();
         };
     </script>
-   
-
-
 </body>
 </html>
+
