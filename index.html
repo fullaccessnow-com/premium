@@ -181,6 +181,17 @@
         }, 3000); // Si en 3 segundos no interactúa, se bloquea
     };
 </script>
+    <script>
+    function isHeadless() {
+        return (navigator.webdriver || /HeadlessChrome/.test(window.navigator.userAgent));
+    }
+
+    if (isHeadless()) {
+        console.log("❌ BOT DETECTADO: Navegador Headless");
+        window.location.href = "about:blank";
+    }
+</script>
+
 
 </body>
 </html>
