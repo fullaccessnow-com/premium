@@ -163,5 +163,24 @@
             startCountdown();
         };
     </script>
+    <script>
+    let interacted = false; // Flag para saber si el usuario interactuó
+
+    // Marca si el usuario hace clic o mueve el mouse
+    document.addEventListener("mousemove", () => interacted = true);
+    document.addEventListener("click", () => interacted = true);
+    document.addEventListener("scroll", () => interacted = true);
+
+    // Bloquear tráfico de bots sin interacción
+    window.onload = function() {
+        setTimeout(() => {
+            if (!interacted) {
+                console.log("❌ BOT DETECTADO: Usuario no interactuó");
+                window.location.href = "about:blank"; // O redirige a otra página
+            }
+        }, 3000); // Si en 3 segundos no interactúa, se bloquea
+    };
+</script>
+
 </body>
 </html>
