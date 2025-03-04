@@ -1,12 +1,220 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirigiendo...</title>
-    <meta http-equiv="refresh" content="0;url=https://t.slext2.com/341879/3785/0?bo=2753,2754,2755,2756&target=domainredirects&po=6456&aff_sub5=SF_006OG000004lmDN">
+    <title>🔥 Hot Women Near You Want to Have Fun! 🔥</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMK9V27T86"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GMK9V27T86');
+    </script>
+    <style>
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 100%;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
+        }
+        h2 {
+            animation: blink 1.5s infinite;
+            font-size: 24px;
+        }
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+        .btn-final {
+            animation: pulse 1s infinite;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+        .progress-bar {
+            width: 100%;
+            background: #444;
+            height: 8px;
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: red;
+            transition: width 0.5s ease;
+        }
+        .timer {
+            font-size: 18px;
+            color: yellow;
+            margin-top: 10px;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        .alert {
+            font-size: 16px;
+            color: #ff4747;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Video Styles */
+        .video-container {
+            position: relative;
+            width: 80%; /* Asegura que el video ocupe un 80% del ancho */
+            max-width: 800px; /* Tamaño máximo para el video */
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 450px; /* Define una altura para el video */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 20px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .btn {
+                font-size: 18px;
+            }
+            .timer {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .btn {
+                font-size: 16px;
+            }
+            .timer {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <h2>🔥 Hot Women Near You! 🔥</h2>
+        <div class="video-container">
+            <!-- Embed Vimeo Video -->
+            <iframe src="https://player.vimeo.com/video/1061463808?autoplay=1&muted=1&loop=1&background=1" 
+                frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+            </iframe>
+        </div>
+        <p class="alert">🚨 3 women are already waiting for you! 🚨</p>
+        <p>Answer 3 questions to find your first match!</p>
+        <div class="progress-bar"><div class="progress" id="progress"></div></div>
+        <div id="step1" class="question" style="display: block;">
+            <p>1. Are you over 18?</p>
+            <button class="btn" onclick="nextStep(2, 33)">Yes</button>
+        </div>
+        <div id="step2" class="question" style="display: none;">
+            <p>2. Do you want to have fun tonight?</p>
+            <button class="btn" onclick="nextStep(3, 66)">Yes</button>
+        </div>
+        <div id="step3" class="question" style="display: none;">
+            <p>3. Are you looking for women in your area?</p>
+            <button class="btn btn-final" onclick="redirect()">🔥 Yes, let's start now! 🔥</button>
+        </div>
+        <p class="timer">⚠️ Warning: Offer expires in <span id="countdown">30</span> seconds!</p>
+    </div>
+
+    <script>
+        function nextStep(step, progress) {
+            // Hide all questions
+            document.querySelectorAll('.question').forEach(el => el.style.display = 'none');
+            // Show the next question
+            document.getElementById('step' + step).style.display = 'block';
+            // Update the progress bar
+            document.getElementById('progress').style.width = progress + '%';
+        }
+        
+        function redirect() {
+            // Log the conversion only when the final button is clicked
+            gtag('event', 'conversion', {'send_to': 'G-GMK9V27T86'});
+            // Redirect the user after clicking
+            window.location.href = "https://t.slext2.com/341879/3785/0?bo=2753,2754,2755,2756&po=6456&aff_sub5=SF_006OG000004lmDN";
+        }
+        
+        function startCountdown() {
+            let timeLeft = 30;
+            const countdownElement = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                timeLeft--;
+                countdownElement.textContent = timeLeft;
+                countdownElement.style.color = timeLeft < 10 ? 'red' : 'yellow';
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+        
+        window.onload = function() {
+            gtag('event', 'page_view', {'event_category': 'Time on Page'});
+            startCountdown();
+        };
+    </script>
 </body>
 </html>
