@@ -1,16 +1,79 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirección</title>
+    <title>Exclusive Content 🔥</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G6NZ6NSXV"></script>
     <script>
-        setTimeout(function() {
-            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
-        }, 1000); // Redirige después de 1 segundo
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7G6NZ6NSXV');
+
+        function trackVisit() {
+            gtag('event', 'page_view', {
+                'event_category': 'engagement',
+                'event_label': 'Landing Loaded'
+            });
+        }
     </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <script>
+        // Espera 1 segundo para evitar que Adsterra bloquee la visita
+        setTimeout(function() {
+            trackVisit(); // Envía el evento a Google Analytics
+            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; // Redirige al enlace correcto
+        }, 1000); 
+    </script>
+
 </head>
 <body>
-    <p>Redirigiendo...</p>
+    <div class="container">
+        <h2>⚠️ Warning: Adults Only Content ⚠️</h2>
+        <p>This content is exclusive. You will be redirected automatically...</p>
+    </div>
 </body>
 </html>
