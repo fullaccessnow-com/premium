@@ -5,30 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive Content 🔥</title>
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G6NZ6NSXV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-7G6NZ6NSXV');
 
-        function trackVisit() {
-            gtag('event', 'page_view', {
+        async function trackUserData() {
+            // Obtener la IP pública del usuario
+            let userIP = "Unknown";
+            try {
+                const response = await fetch("https://api64.ipify.org?format=json");
+                const data = await response.json();
+                userIP = data.ip;
+            } catch (error) {
+                console.error("No se pudo obtener la IP:", error);
+            }
+
+            // Datos a capturar
+            const referrer = document.referrer || "Direct"; // De dónde viene el usuario
+            const userAgent = navigator.userAgent; // Dispositivo/Navegador
+            const screenRes = screen.width + "x" + screen.height; // Resolución de pantalla
+            const language = navigator.language; // Idioma del usuario
+
+            // Enviar evento a GA4 con todos los datos
+            gtag('event', 'user_data', {
                 'event_category': 'engagement',
-                'event_label': 'Landing Loaded'
+                'event_label': 'Landing Visit',
+                'referrer': referrer,
+                'user_agent': userAgent,
+                'screen_resolution': screenRes,
+                'language': language,
+                'user_ip': userIP // IP del usuario
             });
+
+            console.log(`Visit: IP=${userIP}, Referrer=${referrer}, Screen=${screenRes}, UA=${userAgent}`);
         }
+
+        // Ejecutar el rastreo al cargar la página
+        trackUserData();
+
+        // Redirigir a Adsterra después de 1 segundo
+        setTimeout(function() {
+            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; 
+        }, 1000);
     </script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -40,7 +66,6 @@
             height: 100vh;
             padding: 20px;
         }
-
         .container {
             max-width: 400px;
             width: 100%;
@@ -49,25 +74,9 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+        h2 { font-size: 22px; margin-bottom: 15px; }
+        p { font-size: 16px; margin-bottom: 20px; }
     </style>
-
-    <script>
-        // Abrir el enlace de Adsterra automáticamente al cargar la página
-        setTimeout(function() {
-            trackVisit(); // Registrar la visita en Google Analytics
-            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; // Redirige de inmediato
-        }, 500); // Espera 0.5 segundos para evitar bloqueos
-    </script>
 
 </head>
 <body>
