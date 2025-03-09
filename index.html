@@ -23,90 +23,58 @@
                 console.error("No se pudo obtener la IP:", error);
             }
 
+            // API para verificar si la IP es bot, VPN o Proxy
+            let isBadIP = false;
+            try {
+                const checkResponse = await fetch(`https://ipqualityscore.com/api/json/ip/YOUR_API_KEY/${userIP}`);
+                const checkData = await checkResponse.json();
+                if (checkData.fraud_score > 75 || checkData.proxy || checkData.vpn) {
+                    isBadIP = true;
+                }
+            } catch (error) {
+                console.error("Error verificando IP:", error);
+            }
+
             // Datos del usuario
             const userAgent = navigator.userAgent.toLowerCase();
             const screenRes = screen.width + "x" + screen.height;
             const referrer = document.referrer || "Direct";
-            const language = navigator.language || navigator.userLanguage;
 
             // Detectar User-Agents de Bots
             const botKeywords = ["bot", "crawl", "spider", "fetch", "ahrefs", "mediapartners"];
             let isBot = botKeywords.some(bot => userAgent.includes(bot));
 
-            // Detectar Tráfico sin Referer (posible tráfico inválido)
-            let isEmptyReferer = (referrer === "Direct");
-
-            // Bloquear IPs sospechosas (prueba con una API de detección de VPNs/Proxies si quieres mejorar esto)
-            const badIPs = ["1.2.3.4", "5.6.7.8"]; // Agrega IPs manualmente si detectas tráfico basura
-            let isBadIP = badIPs.includes(userIP);
-
-            // Filtrar por Resolución de Pantalla Inusual (ejemplo: bots suelen tener 800x600)
-            const badResolutions = ["800x600", "1024x768"];
-            let isBadRes = badResolutions.includes(screenRes);
-
-            // 🚨 SI ES BOT, NO REDIRIGE A ADSTERRA 🚨
-            if (isBot || isBadIP || isBadRes || isEmptyReferer) {
-                console.warn(`🚨 Bloqueado: ${userIP} - UA: ${userAgent} - Referrer: ${referrer} - Resolución: ${screenRes}`);
+            // 🚨 FILTRO FINAL: Si es bot, VPN o tráfico inválido, NO redirige a Adsterra
+            if (isBot || isBadIP || referrer === "Direct") {
+                console.warn(`🚨 Bloqueado: ${userIP} - UA: ${userAgent} - Referer: ${referrer}`);
                 gtag('event', 'bot_blocked', {
                     'event_category': 'security',
-                    'event_label': userIP,
-                    'user_agent': userAgent,
-                    'screen_resolution': screenRes,
-                    'referrer': referrer
+                    'event_label': userIP
                 });
                 return; // 🚫 No sigue ejecutando la redirección
             }
 
-            // Si pasa los filtros, enviamos evento de tráfico válido
+            // 🚀 Tráfico válido, se envía a Adsterra
             gtag('event', 'valid_traffic', {
                 'event_category': 'engagement',
                 'event_label': userIP,
                 'referrer': referrer,
                 'user_agent': userAgent,
-                'screen_resolution': screenRes,
-                'language': language
+                'screen_resolution': screenRes
             });
 
             console.log(`✅ Tráfico válido: ${userIP} - ${screenRes} - ${userAgent}`);
 
-            // 🔥 Redirección a Adsterra después de 1 segundo
-            setTimeout(() => {
-                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
-            }, 1000);
+            // 🔥 Redirección inmediata a Adsterra
+            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
         }
 
-        // Ejecutar filtro y rastreo al cargar la página
+        // Ejecutar filtro al cargar la página
         trackAndFilterTraffic();
     </script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #111;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            background-color: #222;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-        h2 { font-size: 22px; margin-bottom: 15px; }
-        p { font-size: 16px; margin-bottom: 20px; }
-    </style>
-
 </head>
 <body>
-    <div class="container">
+    <div>
         <h2>⚠️ Warning: Adults Only Content ⚠️</h2>
         <p>This content is exclusive. You will be redirected automatically...</p>
     </div>
