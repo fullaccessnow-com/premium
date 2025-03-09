@@ -44,9 +44,22 @@
             const botKeywords = ["bot", "crawl", "spider", "fetch", "ahrefs", "mediapartners"];
             let isBot = botKeywords.some(bot => userAgent.includes(bot));
 
-            // 🚨 FILTRO FINAL: Si es bot, VPN o tráfico inválido, NO redirige a Adsterra
-            if (isBot || isBadIP || referrer === "Direct") {
-                console.warn(`🚨 Bloqueado: ${userIP} - UA: ${userAgent} - Referer: ${referrer}`);
+            // Bloquear Tráfico de Referencias No Deseadas
+            const blockedReferrers = [
+                'blockadsnot.com',
+                'visariomedia.com',
+                'displayvertising.com',
+                'ybnnocszmtuz.com',
+                'intelligenceadx.com',
+                'betteradsystem.com',
+                'xadsmart.com',
+                'cdn4ads.com',
+                'intellipopup.com'
+            ];
+
+            if (isBot || isBadIP || blockedReferrers.some(domain => referrer.includes(domain))) {
+                // Mostrar mensaje de advertencia si el tráfico es no válido
+                document.body.innerHTML = "<h1>Acceso Denegado</h1><p>Su tráfico ha sido identificado como no válido.</p>";
                 gtag('event', 'bot_blocked', {
                     'event_category': 'security',
                     'event_label': userIP
@@ -80,5 +93,6 @@
     </div>
 </body>
 </html>
+
 
 
