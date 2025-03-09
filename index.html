@@ -13,8 +13,7 @@
         gtag('js', new Date());
         gtag('config', 'G-7G6NZ6NSXV');
 
-        async function trackUserData() {
-            // Obtener la IP pública del usuario
+        async function trackAndFilterTraffic() {
             let userIP = "Unknown";
             try {
                 const response = await fetch("https://api64.ipify.org?format=json");
@@ -24,33 +23,60 @@
                 console.error("No se pudo obtener la IP:", error);
             }
 
-            // Datos a capturar
-            const referrer = document.referrer || "Direct"; // De dónde viene el usuario
-            const userAgent = navigator.userAgent; // Dispositivo/Navegador
-            const screenRes = screen.width + "x" + screen.height; // Resolución de pantalla
-            const language = navigator.language; // Idioma del usuario
+            // Datos del usuario
+            const userAgent = navigator.userAgent.toLowerCase();
+            const screenRes = screen.width + "x" + screen.height;
+            const referrer = document.referrer || "Direct";
+            const language = navigator.language || navigator.userLanguage;
 
-            // Enviar evento a GA4 con todos los datos
-            gtag('event', 'user_data', {
+            // Detectar User-Agents de Bots
+            const botKeywords = ["bot", "crawl", "spider", "fetch", "ahrefs", "mediapartners"];
+            let isBot = botKeywords.some(bot => userAgent.includes(bot));
+
+            // Detectar Tráfico sin Referer (posible tráfico inválido)
+            let isEmptyReferer = (referrer === "Direct");
+
+            // Bloquear IPs sospechosas (prueba con una API de detección de VPNs/Proxies si quieres mejorar esto)
+            const badIPs = ["1.2.3.4", "5.6.7.8"]; // Agrega IPs manualmente si detectas tráfico basura
+            let isBadIP = badIPs.includes(userIP);
+
+            // Filtrar por Resolución de Pantalla Inusual (ejemplo: bots suelen tener 800x600)
+            const badResolutions = ["800x600", "1024x768"];
+            let isBadRes = badResolutions.includes(screenRes);
+
+            // 🚨 SI ES BOT, NO REDIRIGE A ADSTERRA 🚨
+            if (isBot || isBadIP || isBadRes || isEmptyReferer) {
+                console.warn(`🚨 Bloqueado: ${userIP} - UA: ${userAgent} - Referrer: ${referrer} - Resolución: ${screenRes}`);
+                gtag('event', 'bot_blocked', {
+                    'event_category': 'security',
+                    'event_label': userIP,
+                    'user_agent': userAgent,
+                    'screen_resolution': screenRes,
+                    'referrer': referrer
+                });
+                return; // 🚫 No sigue ejecutando la redirección
+            }
+
+            // Si pasa los filtros, enviamos evento de tráfico válido
+            gtag('event', 'valid_traffic', {
                 'event_category': 'engagement',
-                'event_label': 'Landing Visit',
+                'event_label': userIP,
                 'referrer': referrer,
                 'user_agent': userAgent,
                 'screen_resolution': screenRes,
-                'language': language,
-                'user_ip': userIP // IP del usuario
+                'language': language
             });
 
-            console.log(`Visit: IP=${userIP}, Referrer=${referrer}, Screen=${screenRes}, UA=${userAgent}`);
+            console.log(`✅ Tráfico válido: ${userIP} - ${screenRes} - ${userAgent}`);
+
+            // 🔥 Redirección a Adsterra después de 1 segundo
+            setTimeout(() => {
+                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+            }, 1000);
         }
 
-        // Ejecutar el rastreo al cargar la página
-        trackUserData();
-
-        // Redirigir a Adsterra después de 1 segundo
-        setTimeout(function() {
-            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; 
-        }, 1000);
+        // Ejecutar filtro y rastreo al cargar la página
+        trackAndFilterTraffic();
     </script>
 
     <style>
@@ -86,4 +112,5 @@
     </div>
 </body>
 </html>
+
 
