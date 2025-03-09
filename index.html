@@ -18,20 +18,19 @@
             return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        // Si es un bot, redirigir a una página vacía o página de "filtro" para evitar impresiones falsas
+        // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
         if (isBot()) {
-            window.location.replace("about:blank");  // Cambia esto por la URL de redirección para bots
-        } else {
-            // Redirigir a la URL humana solo después de 2 segundos de interacción
-            setTimeout(function() {
-                window.location.replace("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f");
-            }, 2000);  // Redirección después de 2 segundos para humanos
+            window.location.replace("about:blank");  // Redirige a página vacía
         }
     </script>
+
+    <!-- Meta refresh para redirigir inmediatamente a la URL de destino después de 0 segundos -->
+    <meta http-equiv="refresh" content="0;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
 </head>
 <body>
-    <!-- El contenido de la página será redirigido después de 2 segundos si no es un bot -->
+    <!-- El contenido de la página se redirige inmediatamente o se bloquea en caso de bots -->
 </body>
 </html>
+
 
 
