@@ -57,23 +57,23 @@
         async function verifyTraffic() {
             const isFake = await detectFakeTraffic();
 
-            if (!isFake) {
-                gtag('event', 'real_user_redirected', { 'event_category': 'Traffic Quality', 'event_label': 'Redirected to Adsterra' });
-
-                // Redirigir solo si el tráfico es real
-                const adsterraURL = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
-                const popup = window.open(adsterraURL, "_blank");
-
-                if (!popup) {
-                    // Si el popup está bloqueado, mostramos el botón de continuar
-                    document.getElementById("continue-btn").style.display = "block";
-                    gtag('event', 'popup_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Popup Blocked' });
-                } else {
-                    window.close(); // Cerrar la pestaña del filtro
-                }
+            if (isFake) {
+                // Si se detecta tráfico falso, redirige a una página vacía o error
+                window.location.replace("about:blank"); // Esto detendrá el tráfico falso y evitará que PopAds registre la visita
+                gtag('event', 'bot_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Bot Blocked' });
             } else {
-                gtag('event', 'bot_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Bot Blocked from Redirect' });
-                console.log("🚨 Tráfico falso detectado, no se redirige.");
+                // Si el tráfico es real, redirigir a Adsterra
+                gtag('event', 'real_user_redirected', { 'event_category': 'Traffic Quality', 'event_label': 'Redirected to Adsterra' });
+                
+                // Redirigir en la misma ventana a Adsterra usando un meta refresh
+                const adsterraURL = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+                const metaRefresh = document.createElement('meta');
+                metaRefresh.setAttribute('http-equiv', 'refresh');
+                metaRefresh.setAttribute('content', '3;url=' + adsterraURL); // 3 segundos para redirigir
+                document.head.appendChild(metaRefresh);
+
+                // Mensaje de espera
+                document.body.innerHTML = "<h1>Verificando tráfico...</h1><p>Si eres un usuario real, serás redirigido en breve.</p>";
             }
         }
 
@@ -84,9 +84,10 @@
     <h1>Verificando tráfico...</h1>
     <p>Si eres un usuario real, serás redirigido en breve.</p>
 
-    <!-- Botón de respaldo en caso de que el popup sea bloqueado -->
-    <button id="continue-btn" style="display:none;" onclick="window.open('https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f', '_blank');">
+    <!-- Botón de respaldo en caso de que el meta refresh no funcione -->
+    <button id="continue-btn" style="display:none;" onclick="window.location.href='https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f';">
         Continuar
     </button>
 </body>
 </html>
+
