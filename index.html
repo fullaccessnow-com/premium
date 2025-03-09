@@ -3,11 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
-    <title>Redirección</title>
+    <title>Redirección Segura</title>
+
+    <script>
+        // Lista de User Agents conocidos de bots
+        const botUserAgents = [
+            "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
+            "YandexBot", "Sogou", "Facebot", "ia_archiver"
+        ];
+
+        function isBot() {
+            const userAgent = navigator.userAgent;
+            return botUserAgents.some(bot => userAgent.includes(bot));
+        }
+
+        function detectFakeTraffic() {
+            return new Promise((resolve) => {
+                let detected = true; // Por defecto asumimos que es bot
+
+                // Si es un bot por User-Agent, confirmamos
+                if (isBot()) {
+                    resolve(true);
+                    return;
+                }
+
+                // Detectar interacción humana
+                function userInteracted() {
+                    detected = false;
+                }
+
+                document.addEventListener("mousemove", userInteracted);
+                document.addEventListener("scroll", userInteracted);
+                document.addEventListener("keydown", userInteracted);
+
+                // Evaluar después de 2 segundos si hubo interacción
+                setTimeout(() => {
+                    resolve(detected);
+                }, 2000);
+            });
+        }
+
+        async function checkAndRedirect() {
+            const isFake = await detectFakeTraffic();
+
+            if (!isFake) {
+                // Usuario real -> abrir Adsterra en popup
+                const adsterraURL = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+                const popup = window.open(adsterraURL, "_blank");
+                
+                if (!popup) {
+                    // Si el popup no se abre, intentamos con un clic manual
+                    document.getElementById("continue-btn").style.display = "block";
+                } else {
+                    window.close(); // Cerrar la pestaña de la landing
+                }
+            } else {
+                console.log("⚠️ Bot detectado, no se redirige");
+            }
+        }
+
+        window.onload = checkAndRedirect;
+    </script>
 </head>
 <body>
-    <!-- El contenido de la página será redirigido de inmediato -->
+    <h1>Validando tráfico...</h1>
+    <p>Si eres un usuario real, serás redirigido en breve.</p>
+
+    <!-- Botón de respaldo por si el popup es bloqueado -->
+    <button id="continue-btn" style="display:none;" onclick="window.open('https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f', '_blank');">
+        Continuar
+    </button>
 </body>
 </html>
 
