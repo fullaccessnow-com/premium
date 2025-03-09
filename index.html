@@ -35,39 +35,24 @@
                 console.error("Error verificando IP:", error);
             }
 
-            // Datos del usuario
+            // Detectar User-Agents de Bots
             const userAgent = navigator.userAgent.toLowerCase();
             const screenRes = screen.width + "x" + screen.height;
             const referrer = document.referrer || "Direct";
-
-            // Detectar User-Agents de Bots
             const botKeywords = ["bot", "crawl", "spider", "fetch", "ahrefs", "mediapartners"];
             let isBot = botKeywords.some(bot => userAgent.includes(bot));
 
-            // Bloquear Tráfico de Referencias No Deseadas
-            const blockedReferrers = [
-                'blockadsnot.com',
-                'visariomedia.com',
-                'displayvertising.com',
-                'ybnnocszmtuz.com',
-                'intelligenceadx.com',
-                'betteradsystem.com',
-                'xadsmart.com',
-                'cdn4ads.com',
-                'intellipopup.com'
-            ];
-
-            if (isBot || isBadIP || blockedReferrers.some(domain => referrer.includes(domain))) {
-                // Mostrar mensaje de advertencia si el tráfico es no válido
-                document.body.innerHTML = "<h1>Acceso Denegado</h1><p>Su tráfico ha sido identificado como no válido.</p>";
+            // 🚨 FILTRO FINAL: Si es bot, VPN o tráfico inválido, NO redirige a Adsterra
+            if (isBot || isBadIP || referrer === "Direct") {
+                console.warn(`🚨 Bloqueado: ${userIP} - UA: ${userAgent} - Referer: ${referrer}`);
                 gtag('event', 'bot_blocked', {
                     'event_category': 'security',
                     'event_label': userIP
                 });
-                return; // 🚫 No sigue ejecutando la redirección
+                return;
             }
 
-            // 🚀 Tráfico válido, se envía a Adsterra
+            // 🚀 Tráfico válido
             gtag('event', 'valid_traffic', {
                 'event_category': 'engagement',
                 'event_label': userIP,
@@ -77,9 +62,11 @@
             });
 
             console.log(`✅ Tráfico válido: ${userIP} - ${screenRes} - ${userAgent}`);
-
-            // 🔥 Redirección inmediata a Adsterra
-            window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+            
+            // 🔥 Redirección con retraso de 3s para mejorar el tiempo en la página
+            setTimeout(() => {
+                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+            }, 3000);
         }
 
         // Ejecutar filtro al cargar la página
