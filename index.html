@@ -24,7 +24,7 @@
             return new Promise((resolve) => {
                 let interacted = false;
 
-                // Detectar interacción con el mouse, scroll o teclado
+                // Detectar interacción con el mouse, scroll, teclado o eventos táctiles
                 function onUserInteraction() {
                     interacted = true;
                     clearTimeout(timeout);
@@ -39,6 +39,9 @@
                 document.addEventListener("mousemove", onUserInteraction);
                 document.addEventListener("scroll", onUserInteraction);
                 document.addEventListener("keydown", onUserInteraction);
+                document.addEventListener("touchstart", onUserInteraction);  // Detectar interacción táctil
+                document.addEventListener("touchmove", onUserInteraction);   // Detectar desplazamiento táctil
+                document.addEventListener("touchend", onUserInteraction);    // Detectar finalización de toque
             });
         }
 
