@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="2;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
     <title>Redirección</title>
 
     <script>
@@ -27,13 +26,14 @@
                 // Detectar interacción con el mouse, scroll, teclado o eventos táctiles
                 function onUserInteraction() {
                     interacted = true;
-                    clearTimeout(timeout);
-                    resolve(interacted);
+                    clearTimeout(timeout);  // Limpiar el timeout si hay interacción
+                    resolve(interacted);  // Resolver la promesa si hay interacción
                 }
 
+                // Timeout de 2 segundos, si no hay interacción asumimos que es un bot
                 const timeout = setTimeout(() => {
-                    resolve(interacted);
-                }, 2000); // Después de 2 segundos sin interacción, asume que es bot
+                    resolve(interacted);  // Si no hay interacción, resolvemos con "false"
+                }, 2000); // Después de 2 segundos sin interacción, se supone que es un bot
 
                 // Escuchar interacciones del usuario
                 document.addEventListener("mousemove", onUserInteraction);
@@ -68,7 +68,7 @@
     </script>
 </head>
 <body>
-    <!-- El contenido de la página será redirigido de inmediato si el tráfico es real -->
+    <!-- El contenido de la página será redirigido solo después de verificar el tráfico -->
 </body>
 </html>
 
