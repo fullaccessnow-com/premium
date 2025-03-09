@@ -1,21 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirección Segura</title>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G6NZ6NSXV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7G6NZ6NSXV');
-    </script>
+    <title>Verificación de Usuario</title>
 
     <script>
-        // Lista de User Agents conocidos de bots
+        // Lista de User Agents de bots conocidos
         const botUserAgents = [
             "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
             "YandexBot", "Sogou", "Facebot", "ia_archiver"
@@ -30,65 +22,43 @@
             return new Promise((resolve) => {
                 let detected = true; // Asumimos que es bot
 
-                // Si es un bot por User-Agent, confirmamos
                 if (isBot()) {
-                    gtag('event', 'bot_detected', { 'event_category': 'Traffic Quality', 'event_label': 'User-Agent Bot' });
                     resolve(true);
                     return;
                 }
 
-                // Detectar interacción humana
+                let interactionDetected = false;
+
                 function userInteracted() {
-                    detected = false;
-                    gtag('event', 'user_interaction', { 'event_category': 'Traffic Quality', 'event_label': 'Human Detected' });
+                    interactionDetected = true;
                 }
 
                 document.addEventListener("mousemove", userInteracted);
                 document.addEventListener("scroll", userInteracted);
                 document.addEventListener("keydown", userInteracted);
+                document.addEventListener("click", userInteracted);
 
-                // Evaluar después de 2 segundos si hubo interacción
                 setTimeout(() => {
-                    resolve(detected);
-                }, 2000);
+                    resolve(!interactionDetected);
+                }, 3000);
             });
         }
 
-        async function checkAndRedirect() {
+        async function verifyTraffic() {
             const isFake = await detectFakeTraffic();
 
             if (!isFake) {
-                // Usuario real -> abrir Adsterra en popup
-                const adsterraURL = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
-                const popup = window.open(adsterraURL, "_blank");
-
-                gtag('event', 'real_user_redirected', { 'event_category': 'Traffic Quality', 'event_label': 'Redirected to Adsterra' });
-
-                if (!popup) {
-                    // Si el popup no se abre, intentamos con un clic manual
-                    document.getElementById("continue-btn").style.display = "block";
-                    gtag('event', 'popup_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Popup Blocked' });
-                } else {
-                    window.close(); // Cerrar la pestaña de la landing
-                }
+                // Solo usuarios reales llegan a la landing real
+                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; // <--- CAMBIA ESTO
             } else {
-                console.log("⚠️ Bot detectado, no se redirige");
-                gtag('event', 'bot_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Bot Blocked from Redirect' });
+                console.log("🚨 Tráfico falso detectado, bloqueado.");
             }
         }
 
-        window.onload = checkAndRedirect;
+        window.onload = verifyTraffic;
     </script>
 </head>
 <body>
-    <h1>Validando tráfico...</h1>
-    <p>Si eres un usuario real, serás redirigido en breve.</p>
-
-    <!-- Botón de respaldo por si el popup es bloqueado -->
-    <button id="continue-btn" style="display:none;" onclick="window.open('https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f', '_blank');">
-        Continuar
-    </button>
+    <h1>Verificando acceso...</h1>
 </body>
 </html>
-
-
