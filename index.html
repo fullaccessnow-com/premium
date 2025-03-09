@@ -1,10 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Usuario</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G6NZ6NSXV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7G6NZ6NSXV');
+    </script>
 
     <script>
         // Lista de User Agents de bots conocidos
@@ -20,27 +28,29 @@
 
         function detectFakeTraffic() {
             return new Promise((resolve) => {
-                let detected = true; // Asumimos que es bot
+                let detected = true; // Por defecto asumimos que es un bot
 
+                // Si es un bot por User-Agent, lo confirmamos
                 if (isBot()) {
+                    gtag('event', 'bot_detected', { 'event_category': 'Traffic Quality', 'event_label': 'User-Agent Bot' });
                     resolve(true);
                     return;
                 }
 
+                // Detectar interacción humana (movimiento del ratón, scroll, o teclas)
                 let interactionDetected = false;
-
                 function userInteracted() {
                     interactionDetected = true;
+                    gtag('event', 'user_interaction', { 'event_category': 'Traffic Quality', 'event_label': 'Human Detected' });
                 }
 
                 document.addEventListener("mousemove", userInteracted);
                 document.addEventListener("scroll", userInteracted);
                 document.addEventListener("keydown", userInteracted);
-                document.addEventListener("click", userInteracted);
 
                 setTimeout(() => {
                     resolve(!interactionDetected);
-                }, 3000);
+                }, 2000); // Si no hay interacción en 2 segundos, consideramos tráfico de bot
             });
         }
 
@@ -48,10 +58,22 @@
             const isFake = await detectFakeTraffic();
 
             if (!isFake) {
-                // Solo usuarios reales llegan a la landing real
-                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f"; // <--- CAMBIA ESTO
+                gtag('event', 'real_user_redirected', { 'event_category': 'Traffic Quality', 'event_label': 'Redirected to Adsterra' });
+
+                // Redirigir solo si el tráfico es real
+                const adsterraURL = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+                const popup = window.open(adsterraURL, "_blank");
+
+                if (!popup) {
+                    // Si el popup está bloqueado, mostramos el botón de continuar
+                    document.getElementById("continue-btn").style.display = "block";
+                    gtag('event', 'popup_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Popup Blocked' });
+                } else {
+                    window.close(); // Cerrar la pestaña del filtro
+                }
             } else {
-                console.log("🚨 Tráfico falso detectado, bloqueado.");
+                gtag('event', 'bot_blocked', { 'event_category': 'Traffic Quality', 'event_label': 'Bot Blocked from Redirect' });
+                console.log("🚨 Tráfico falso detectado, no se redirige.");
             }
         }
 
@@ -59,6 +81,12 @@
     </script>
 </head>
 <body>
-    <h1>Verificando acceso...</h1>
+    <h1>Verificando tráfico...</h1>
+    <p>Si eres un usuario real, serás redirigido en breve.</p>
+
+    <!-- Botón de respaldo en caso de que el popup sea bloqueado -->
+    <button id="continue-btn" style="display:none;" onclick="window.open('https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f', '_blank');">
+        Continuar
+    </button>
 </body>
 </html>
