@@ -9,14 +9,14 @@
         // Lista de User Agents conocidos de bots
         const botUserAgents = [
             "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
-"YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
-"FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
-"Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
-"LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
-"Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
-"Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
-"TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
-"Siteimprove"
+            "YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
+            "FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
+            "Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
+            "LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
+            "Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
+            "Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
+            "TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
+            "Siteimprove"
         ];
 
         // Función para detectar si es un bot
@@ -27,17 +27,19 @@
 
         // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
         if (isBot()) {
-            window.location.replace("about:blank");  // Redirige a página vacía
+            window.location.replace("about:blank");  // Redirige a página vacía inmediatamente
+        }
+        // Si no es un bot, redirigir al URL de destino
+        else {
+            setTimeout(function(){
+                window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+            }, 100); // Redirigir después de 100ms
         }
     </script>
-
-    <!-- Meta refresh para redirigir inmediatamente a la URL de destino después de 0 segundos -->
-    <meta http-equiv="refresh" content="0.5;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
 </head>
 <body>
-    <!-- El contenido de la página se redirige inmediatamente o se bloquea en caso de bots -->
+    <!-- El contenido de la página se redirige inmediatamente si no es un bot -->
 </body>
 </html>
-
 
 
