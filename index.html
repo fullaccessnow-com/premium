@@ -3,10 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirección</title>
+    <title>Landing Adulta Optimizada</title>
+    <style>
+        /* Diseño simple para asegurar que el banner sea prominente y el contenido limpio */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
 
+        .banner-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('banner-background.jpg');
+            background-size: cover;
+        }
+
+        #container-83c58e3a31759dc95349030a8a84ebd5 {
+            width: 100%;
+            max-width: 728px; /* Tamaño estándar del banner */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        /* Asegura que la página sea responsiva */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+
+    <!-- Filtro antibots -->
     <script>
-        // Lista de User Agents conocidos de bots
         const botUserAgents = [
             "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
             "YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
@@ -19,40 +59,28 @@
             "Siteimprove"
         ];
 
-        // Función para detectar si es un bot
         function isBot() {
             const userAgent = navigator.userAgent;
-            return botUserAgents.some(bot => userAgent.includes(bot)) || navigator.webdriver;
+            return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
         if (isBot()) {
-            window.location.replace("about:blank");  // Redirige a página vacía
+            window.location.replace("about:blank");
         }
-
-        // Simulación de redirección con retraso aleatorio
-        function redirect() {
-            // Redirigir a la URL de destino después de un retraso aleatorio entre 1 y 3 segundos
-            const delay = Math.floor(Math.random() * 2000) + 1000; // Retraso entre 1 y 3 segundos
-            setTimeout(function() {
-                window.location.replace("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f");
-            }, delay);
-        }
-
-        // Llamar a la función de redirección
-        redirect();
     </script>
 
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-        }
-    </style>
 </head>
 <body>
-    <h3>Redirigiendo... espere un momento.</h3>
+
+    <!-- Contenedor principal -->
+    <div class="banner-container">
+        <!-- Banner de Adsterra -->
+        <script async="async" data-cfasync="false" src="//pl26083326.effectiveratecpm.com/83c58e3a31759dc95349030a8a84ebd5/invoke.js"></script>
+        <div id="container-83c58e3a31759dc95349030a8a84ebd5"></div>
+    </div>
+
+    <h1>Descubre contenido exclusivo y mucho más...</h1>
+
 </body>
 </html>
 
