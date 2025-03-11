@@ -74,29 +74,6 @@
         }
     </style>
 
-    <!-- Filtro antibots -->
-    <script>
-        const botUserAgents = [
-            "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
-            "YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
-            "FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
-            "Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
-            "LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
-            "Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
-            "Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
-            "TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
-            "Siteimprove"
-        ];
-
-        function isBot() {
-            const userAgent = navigator.userAgent;
-            return botUserAgents.some(bot => userAgent.includes(bot));
-        }
-
-        if (isBot()) {
-            window.location.replace("about:blank");
-        }
-    </script>
 </head>
 <body>
 
