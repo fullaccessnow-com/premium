@@ -1,92 +1,40 @@
-<!DOCTYPE html>
+estoy haciendo publicidad en formato popup en popads.net y estoy mandando impresiones a un link directo de adssterra de trafico adulto: <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Adulta Optimizada</title>
-    <style>
-        /* Diseño básico */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            overflow-x: hidden;
+    <title>Redirección</title>
+
+    <script>
+        // Lista de User Agents conocidos de bots
+        const botUserAgents = [
+            "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
+"YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
+"FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
+"Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
+"LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
+"Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
+"Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
+"TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
+"Siteimprove"
+        ];
+
+        // Función para detectar si es un bot
+        function isBot() {
+            const userAgent = navigator.userAgent;
+            return botUserAgents.some(bot => userAgent.includes(bot));
         }
 
-        /* Contenedor del banner */
-        .banner-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url('banner-background.jpg'); /* Cambiar imagen de fondo según necesidades */
-            background-size: cover;
-            background-position: center;
+        // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
+        if (isBot()) {
+            window.location.replace("about:blank");  // Redirige a página vacía
         }
+    </script>
 
-        /* Contenedor del banner (ajuste según el dispositivo) */
-        #container-83c58e3a31759dc95349030a8a84ebd5 {
-            width: 100%;
-            max-width: 100%; /* Ajusta el tamaño máximo */
-            height: auto;
-            text-align: center;
-        }
-
-        /* Título de la página */
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        /* Media query para dispositivos pequeños (tablet y móvil) */
-        @media (max-width: 1024px) {
-            h1 {
-                font-size: 28px;
-            }
-        }
-
-        /* Media query para dispositivos móviles */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 20px;
-                margin-top: 15px;
-            }
-            /* Ajustar el banner para que sea más pequeño en pantallas móviles */
-            #container-83c58e3a31759dc95349030a8a84ebd5 {
-                max-width: 90%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 18px;
-                margin-top: 10px;
-            }
-            /* Ajustar el contenedor para pantallas muy pequeñas */
-            #container-83c58e3a31759dc95349030a8a84ebd5 {
-                max-width: 100%;
-            }
-        }
-    </style>
-
+    <!-- Meta refresh para redirigir inmediatamente a la URL de destino después de 0 segundos -->
+    <meta http-equiv="refresh" content="0.5;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
 </head>
 <body>
-
-    <!-- Contenedor principal -->
-    <div class="banner-container">
-        <!-- Banner de Adsterra -->
-        <script async="async" data-cfasync="false" src="//pl26083326.effectiveratecpm.com/83c58e3a31759dc95349030a8a84ebd5/invoke.js"></script>
-        <div id="container-83c58e3a31759dc95349030a8a84ebd5"></div>
-    </div>
-
-    <!-- Título de la página -->
-    
-
+    <!-- El contenido de la página se redirige inmediatamente o se bloquea en caso de bots -->
 </body>
 </html>
-
