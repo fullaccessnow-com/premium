@@ -5,37 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirección</title>
 
+    <!-- Meta refresh como respaldo en caso de que JavaScript no se ejecute -->
+    <meta http-equiv="refresh" content="1;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
+
     <script>
-        // Lista de User Agents conocidos de bots
-        const botUserAgents = [
-            "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
-"YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
-"FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
-"Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
-"LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
-"Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
-"Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
-"TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
-"Siteimprove"
-        ];
+        document.addEventListener("DOMContentLoaded", function() {
+            const botUserAgents = [
+                "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
+                "YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
+                "FacebookExternalHit", "Applebot", "MJ12bot", "AhrefsBot", "SemrushBot",
+                "Exabot", "Swiftbot", "Meta-ExternalAgent", "Meta-ExternalFetcher",
+                "LinkedInBot", "Alexa Crawler", "Google AdsBot", "Google Image Bot",
+                "Google Video Bot", "Google News Bot", "Yahoo! Slurp", "Ask Jeeves/Teoma",
+                "Gigabot", "SeznamBot", "Soso Spider", "Naver Bot", "Alexa Internet",
+                "TurnitinBot", "Majestic-12 (MJ12bot)", "DotBot", "CCBot", "UptimeRobot",
+                "Siteimprove"
+            ];
 
-        // Función para detectar si es un bot
-        function isBot() {
-            const userAgent = navigator.userAgent;
-            return botUserAgents.some(bot => userAgent.includes(bot));
-        }
+            function isBot() {
+                const userAgent = navigator.userAgent;
+                return botUserAgents.some(bot => userAgent.includes(bot));
+            }
 
-        // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
-        if (isBot()) {
-            window.location.replace("about:blank");  // Redirige a página vacía
-        }
+            if (isBot()) {
+                window.location.replace("about:blank");
+            } else {
+                // Contar la visita con un pixel
+                const img = document.createElement("img");
+                img.src = "https://tuservidordetracking.com/pixel.png";
+                img.width = 1;
+                img.height = 1;
+                img.style.display = "none";
+                document.body.appendChild(img);
+
+                // Redirección con JavaScript después de 1 segundo
+                setTimeout(function() {
+                    window.location.href = "https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f";
+                }, 1000);
+            }
+        });
     </script>
-
-    <!-- Meta refresh para redirigir inmediatamente a la URL de destino después de 0 segundos -->
-    <meta http-equiv="refresh" content="0.5;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
 </head>
 <body>
-    <!-- El contenido de la página se redirige inmediatamente o se bloquea en caso de bots -->
+    <h3>Espere un momento...</h3>
 </body>
 </html>
 
