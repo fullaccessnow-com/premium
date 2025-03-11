@@ -6,6 +6,7 @@
     <title>Redirección</title>
 
     <script>
+        // Lista de User Agents conocidos de bots
         const botUserAgents = [
             "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider",
             "YandexBot", "Sogou", "Facebot", "ia_archiver", "Pinterest", "Twitterbot",
@@ -18,24 +19,40 @@
             "Siteimprove"
         ];
 
+        // Función para detectar si es un bot
         function isBot() {
             const userAgent = navigator.userAgent;
-            return botUserAgents.some(bot => userAgent.includes(bot));
+            return botUserAgents.some(bot => userAgent.includes(bot)) || navigator.webdriver;
         }
 
+        // Si es un bot, redirigir a una página vacía para evitar impresiones falsas
         if (isBot()) {
-            window.location.replace("about:blank");
+            window.location.replace("about:blank");  // Redirige a página vacía
         }
+
+        // Simulación de redirección con retraso aleatorio
+        function redirect() {
+            // Redirigir a la URL de destino después de un retraso aleatorio entre 1 y 3 segundos
+            const delay = Math.floor(Math.random() * 2000) + 1000; // Retraso entre 1 y 3 segundos
+            setTimeout(function() {
+                window.location.replace("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f");
+            }, delay);
+        }
+
+        // Llamar a la función de redirección
+        redirect();
     </script>
 
-    <!-- Meta refresh solo se ejecuta si el bot no ha sido detectado -->
-    <noscript>
-        <meta http-equiv="refresh" content="1;url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
-    </noscript>
-
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h3>Espere un momento...</h3>
+    <h3>Redirigiendo... espere un momento.</h3>
 </body>
 </html>
 
