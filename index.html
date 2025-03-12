@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Live Chat Access</title>
-    
-    <!-- Google Analytics -->
+    <title>🔥 Exclusive Live Chat - Instant Access! 🔥</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMK9V27T86"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-GMK9V27T86');
 
       function trackClick() {
@@ -21,80 +18,90 @@
               'value': 1
           });
       }
-
-      function trackGeo() {
-          fetch("https://ipapi.co/json/")
-              .then(response => response.json())
-              .then(data => {
-                  gtag('event', 'geo', {
-                      'event_category': 'Geolocation',
-                      'event_label': data.country_name,
-                      'value': 1
-                  });
-              });
-      }
-
-      window.onload = trackGeo;
-
       function redirectToOffer() {
-          // Primero, rastreamos el clic
           trackClick();
-          
-          // Después de un retraso, abrimos la página en una nueva ventana
           setTimeout(function() {
-              // Abre la URL en una nueva ventana/pestaña
-              window.open("https://t.acrsmartcam.com/341879/4152?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN", "_blank");
-          }, 1000); // 1 segundo de retraso
+              window.open("https://t.acrsmartcam.com/341879/4152?bo=2779,2778,2777,2776,2775&aff_sub5=SF_006OG000004lmDN", "_blank");
+          }, 500);
       }
     </script>
-
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #111;
+            background-color: #000;
             color: white;
             text-align: center;
-            padding: 50px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         .container {
-            max-width: 500px;
-            margin: auto;
-            background-color: #222;
+            width: 90%;
+            max-width: 400px;
+            background: #222;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            text-align: center;
         }
         img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
+            margin-bottom: 15px;
         }
         .button {
-            display: inline-block;
-            background-color: red;
+            display: block;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
             color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 15px 20px;
+            font-size: 20px;
             font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
         }
         .button:hover {
-            background-color: darkred;
+            background: linear-gradient(45deg, #ff7300, #ff0000);
+            transform: scale(1.05);
+        }
+        .timer {
+            font-size: 18px;
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Exclusive Live Chat with Models</h2>
-    <p>Enter now to chat live with your favorite models!</p>
-    <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169poster/34/c6/d5/34c6d58ebdc6c04946c289bf7ea31a12-1/34c6d58ebdc6c04946c289bf7ea31a12.23.jpg" alt="Exclusive Live Chat">
-    <!-- Ahora el botón hace clic y solo redirige después de 1 segundo -->
-    <a href="#" class="button" onclick="redirectToOffer()">JOIN NOW</a>
-</div>
-
+    <div class="container">
+        <h2>💋 Private Live Chat with Hot Models! 💋</h2>
+        <p>⚠️ Limited Spots Available! Secure Your Access NOW! ⚠️</p>
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169poster/34/c6/d5/34c6d58ebdc6c04946c289bf7ea31a12-1/34c6d58ebdc6c04946c289bf7ea31a12.23.jpg" alt="Exclusive Live Chat">
+        <div class="timer" id="countdown">Offer expires in: 00:10</div>
+        <a class="button" onclick="redirectToOffer()">🔥 INSTANT ACCESS 🔥</a>
+    </div>
+    <script>
+        function startCountdown(duration) {
+            let timer = duration, minutes, seconds;
+            let countdownElement = document.getElementById("countdown");
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                countdownElement.textContent = "Offer expires in: " + minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = 0;
+                }
+            }, 1000);
+        }
+        startCountdown(10);
+    </script>
 </body>
 </html>
-
 
