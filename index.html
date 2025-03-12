@@ -56,6 +56,14 @@
 
       // Llamar la geolocalización cuando cargue la página
       window.onload = trackGeo;
+
+      // Redirigir al usuario automáticamente después de un clic
+      function redirectToOffer() {
+          trackClick(); // Registrar clic
+          setTimeout(function() {
+              window.location.href = "https://t.acrsmartcam.com/341879/4152?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN";
+          }, 1000); // Retrasar la redirección por 1 segundo
+      }
     </script>
 
     <style>
@@ -100,7 +108,8 @@
     <h2>WARNING: ADULT CONTENT</h2>
     <p>You must be 18+ to access this content.</p>
     <img src="https://i.imgfv.com/thumbs/2/c/4/1/d/2c41dc16ca896b474f48f86630811711609a16b5.mp4/2c41dc16ca896b474f48f86630811711609a16b5.mp4-13.jpg" alt="Adult Content Warning">
-    <a href="https://t.acrsmartcam.com/341879/4152?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN" class="button" target="_blank" onclick="trackClick()">ACCESS NOW</a>
+    <!-- Botón que activa la función de redirección -->
+    <a href="#" class="button" onclick="redirectToOffer()">ACCESS NOW</a>
 </div>
 
 </body>
