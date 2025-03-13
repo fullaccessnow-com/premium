@@ -3,53 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hot Singles Near You!</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: black;
-            color: white;
-        }
-        .container {
-            margin-top: 100px;
-        }
-        .cta-button {
-            background-color: red;
-            color: white;
-            font-size: 20px;
-            padding: 15px;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-        .cta-button:hover {
-            background-color: darkred;
-        }
-    </style>
-    
-    <!-- Google Analytics Tracking -->
+    <meta name="description" content="Find your perfect match! Hot singles are waiting for you. Limited spots available, act fast!">
+    <meta name="keywords" content="dating, chat, singles, love, romance">
+    <meta name="robots" content="index, follow">
+    <title>🔥 Meet Hot Singles Near You! 🔥</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3DRKJ99PY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-P3DRKJ99PY');
+
+        function trackClick() {
+            gtag('event', 'click', {
+                'event_category': 'CTA',
+                'event_label': 'Enter Now Clicked',
+                'value': 1
+            });
+        }
+
+        function redirectToOffer() {
+            trackClick();
+            document.querySelector('.button').disabled = true; // Disable button after click
+            setTimeout(function() {
+                window.open("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f", "_blank");
+            }, 500);
+        }
     </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #222;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .button {
+            display: block;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            color: white;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #ff7300, #ff0000);
+            transform: scale(1.05);
+        }
+
+        .timer {
+            font-size: 18px;
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .button {
+                font-size: 18px;
+                padding: 12px 18px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔥 Hot Singles Are Waiting For You! 🔥</h1>
-        <img src="https://s.alicdn.com/@sc04/kf/H6c7802c185704f8185a1bda5e2a94885T.jpg_300x300.jpg" alt="Hot Girl" width="300">
-        <p>Click the button below to meet them now!</p>
-        <button class="cta-button" id="cta">👉 Enter Now 👈</button>
+        <h2>💘 Find Your Perfect Match Now! 💘</h2>
+        <p>⚠️ Limited Spots Available! Click Below to Start Chatting! ⚠️</p>
+        <img src="https://s.alicdn.com/@sc04/kf/H6c7802c185704f8185a1bda5e2a94885T.jpg_300x300.jpg" alt="Hot Girl" />
+        <div class="timer" id="countdown">Offer expires in: 00:10</div>
+        <a class="button" onclick="redirectToOffer()">🔥 ENTER NOW 🔥</a>
     </div>
-    
     <script>
-        document.getElementById("cta").addEventListener("click", function() {
-            gtag('event', 'click', {'event_category': 'CTA', 'event_label': 'Adsterra Link'});
-            window.open("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f", "_blank");
-        });
+        function startCountdown(duration) {
+            let timer = duration, minutes, seconds;
+            let countdownElement = document.getElementById("countdown");
+            let countdownInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                countdownElement.textContent = "Offer expires in: " + minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        startCountdown(10);
     </script>
 </body>
 </html>
