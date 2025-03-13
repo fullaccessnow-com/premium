@@ -1,21 +1,60 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="1; url=https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f">
-    <title>Redirección</title>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMK9V27T86"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Singles Near You!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .cta-button {
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .cta-button:hover {
+            background-color: darkred;
+        }
+    </style>
+    
+    <!-- Google Analytics Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3DRKJ99PY"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-GMK9V27T86');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-P3DRKJ99PY');
     </script>
 </head>
 <body>
-    <p>Redirigiendo...</p>
+    <div class="container">
+        <h1>🔥 Hot Singles Are Waiting For You! 🔥</h1>
+        <img src="https://s.alicdn.com/@sc04/kf/H6c7802c185704f8185a1bda5e2a94885T.jpg_300x300.jpg" alt="Hot Girl" width="300">
+        <p>Click the button below to meet them now!</p>
+        <button class="cta-button" id="cta">👉 Enter Now 👈</button>
+    </div>
+    
+    <script>
+        document.getElementById("cta").addEventListener("click", function() {
+            gtag('event', 'click', {'event_category': 'CTA', 'event_label': 'Adsterra Link'});
+            window.open("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f", "_blank");
+        });
+
+        // Auto-redirect after 5 seconds (compatible with PopAds)
+        setTimeout(function() {
+            window.open("https://www.effectiveratecpm.com/yzmvq78n?key=8ecb5d166f3c46a6bd52bb278155058f", "_blank");
+        }, 5000);
+    </script>
 </body>
 </html>
